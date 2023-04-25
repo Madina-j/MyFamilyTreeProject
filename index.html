@@ -10,66 +10,38 @@
 </head>
 
 <body>
-    <div class="Person">
-        <h2>Person's Data</h2>
-        <form id="form">
-            <label for="first-name">First name:</label><br>
-            <input type="text" id="first-name" name="first-name" value="name"><br>
-            <label for="last-name">Last name:</label><br>
-            <input type="text" id="las-tname" name="last-name" value="last name"><br>
-            <label for="dob">Date of birth:</label><br>
-            <input type="text" id="dob" name="dob" value="date of birth"><br><br>
+    <div>
+        <div class="Person">
+            <h2>Person's Data</h2>
+            <form id="form">
+                <label for="first-name">First name:</label><br>
+                <input type="text" id="first-name" name="first-name" value="name"><br>
+                <label for="last-name">Last name:</label><br>
+                <input type="text" id="last-name" name="last-name" value="last name"><br>
+                <label for="dob">Date of birth:</label><br>
+                <input type="text" id="dob" name="dob" value="date of birth"><br><br>
+                <button class="submit"> Submit</button>
+                <button class="addChild"> Add Child</button>
+                <button class="addParent"> Add Parent</button>
+                <button class="addSibling"> Add Sibling</button>
+            </form>
+        </div>
+        <!-- container for child -->
+        <div id="childForm">
 
-            <button> Submit</button>
-        </form>
-    </div>
-    <div class="Perent">
-        <h2>Person's Data</h2>
-        <form id="form">
-            <label for="first-name">First name:</label><br>
-            <input type="text" id="first-name" name="first-name" value="name"><br>
-            <label for="last-name">Last name:</label><br>
-            <input type="text" id="las-tname" name="last-name" value="last name"><br>
-            <label for="dob">Date of birth:</label><br>
-            <input type="text" id="dob" name="dob" value="date of birth"><br><br>
+        </div>
+        <!-- container for sibling -->
+        <div id="siblingForm">
 
-            <button> Submit</button>
-        </form>
-    </div>
-    <div class="Child">
-        <h2>Child</h2>
-        <form id="form">
-            <label for="first-name">First name:</label><br>
-            <input type="text" id="first-name" name="first-name" value="name"><br>
-            <label for="last-name">Last name:</label><br>
-            <input type="text" id="las-tname" name="last-name" value="last name"><br>
-            <label for="dob">Date of birth:</label><br>
-            <input type="text" id="dob" name="dob" value="date of birth"><br><br>
+        </div>
+        <!-- container for parent -->
+        <div id="parentForm">
 
-            <button> Submit</button>
-        </form>
-    </div>
-    <div class="Sibiling">
-        <h2>Sibiling</h2>
-        <form id="form">
-            <label for="first-name">First name:</label><br>
-            <input type="text" id="first-name" name="first-name" value="name"><br>
-            <label for="last-name">Last name:</label><br>
-            <input type="text" id="las-tname" name="last-name" value="last name"><br>
-            <label for="dob">Date of birth:</label><br>
-            <input type="text" id="dob" name="dob" value="date of birth"><br><br>
+        </div>
 
-            <button> Submit</button>
-        </form>
-    </div>
+        <div id="family-tree">
 
-
-
-
-
-
-    <div id="family-tree">
-
+        </div>
     </div>
     <script src="index.js"></script>
 </body>
