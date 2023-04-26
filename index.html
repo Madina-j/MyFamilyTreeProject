@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <div>
+    <main>
         <div class="Person">
             <h2>Person's Data</h2>
-            <form id="form">
+            <form id="personForm">
                 <label for="first-name">First name:</label><br>
                 <input type="text" id="first-name" name="first-name" value="name"><br>
                 <label for="last-name">Last name:</label><br>
@@ -42,7 +42,25 @@
         <div id="family-tree">
 
         </div>
-    </div>
+    </main>
+    <aside>
+        <div class="card">
+            <h2>card</h2>
+            <form id="form">
+                <label for="first-name">First name:</label><br>
+                <div>${name}</div>
+                <br>
+                <label for="last-name">Last name:</label><br>
+                <div>${last-name}</div>
+                <br>
+                <label for="dob">Date of birth:</label><br>
+                <div>${dob}</div>
+                <br><br>
+            </form>
+        </div>
+    </aside>
+
+
     <script src="index.js"></script>
 </body>
 

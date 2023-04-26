@@ -18,23 +18,32 @@ class Person {
     this.parents = [];
     this.siblings = [];
     this.children = [];
-    this.element = null;
+    this.elements = null;
   }
 
-  addParent(name, lastname, dOB) {
+  createParent(name, lastname, dOB) {
     const newParent = new Person(name, lastname, dOB);
-    newParent.addChild(this.name, this.lastname, this.dOB);
+    newChild.connectWithChild(this);
     this.parents.push(newParent);
   }
-  addSibling(name, lastname, dOB) {
+  createSibling(name, lastname, dOB) {
     const newSibling = new Person(name, lastname, dOB);
-    newSibling.addSibling(this.name, this.lastname, this.dOB);
+    newSibling.connectWithSibling(this);
     this.siblings.push(newSibling);
   }
-  addChild(name, lastname, dOB) {
+  createChild(name, lastname, dOB) {
     const newChild = new Person(name, lastname, dOB);
-    newChild.addChild(this.name, this.lastname, this.dOB);
+    newChild.connectWithParent(this);
     this.children.push(newChild);
+  }
+  connectWithParent(parent) {
+    this.parents.push(parent);
+  }
+  connectWithChild(child) {
+    this.child.push(child);
+  }
+  connectWithSibling(sibling) {
+    this.sibling.push(sibling);
   }
 }
 
@@ -46,8 +55,12 @@ const buttonAddSibling = document.querySelector(".addSibling");
 const childFormContainer = document.getElementById("childForm");
 const siblingFormContainer = document.getElementById("siblingForm");
 const parentFormContainer = document.getElementById("parentForm");
+////////////////////////////////////////////////////////////////////////////
 
-submitButton.addEventListener("click", () => {
+const personForm = document.getElementById("personForm");
+personForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const name = document.getElementById("first-name").value;
   const lastname = document.getElementById("last-name").value;
   const dOB = document.getElementById("dob").value;
@@ -59,6 +72,16 @@ submitButton.addEventListener("click", () => {
 
   console.log(people);
 });
+
+// submitForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   rootPerson.createChild();
+//   const name = document.getElementById("first-name").value;
+//   const lastname = document.getElementById("last-name").value;
+//   const dOB = document.getElementById("dob").value;
+//   people.push(new Person(name, lastname, dOB));
+//   console.log(people);
+// });
 
 /////////// Form for rest of people/////////////////////////////////////
 const generateFormTemplate = (personId, title = "Form") => `
@@ -81,24 +104,24 @@ buttonAddChild.addEventListener("click", () => {
   const markup = generateFormTemplate(childId, "Child Form");
 
   childFormContainer.innerHTML = markup;
-
-  //   const submitFormButton = document.getElementById(`button-submit-${childId}`);
-  const submitForm = document.getElementById(`theForm-${childId}`);
-  submitForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    rootPerson.addChild();
-    people.push(new Person(name, lastname, dOB));
-    console.log(people);
-  });
-
-  //   submitFormButton.addEventListener("click", () => {
-  //     rootPerson.addChild();
-  //     people.push(new Person(name, lastname, dOB));
-  //     console.log(people);
-  //   });
-  console.log(people);
-  console.log(rootPerson);
 });
+//   const submitFormButton = document.getElementById(`button-submit-${childId}`);
+// const submitForm = document.getElementById(`theForm-${childId}`);
+// submitForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   rootPerson.createChild();
+//   const name = document.getElementById("first-name").value;
+//   const lastname = document.getElementById("last-name").value;
+//   const dOB = document.getElementById("dob").value;
+//   people.push(new Person(name, lastname, dOB));
+//   console.log(people);
+// });
+
+//   submitFormButton.addEventListener("click", () => {
+//     rootPerson.addChild();
+//     people.push(new Person(name, lastname, dOB));
+//     console.log(people);
+//   });
 
 ///////////////////////Sibling Form/////////////////////////////////////
 
@@ -108,9 +131,9 @@ buttonAddSibling.addEventListener("click", () => {
 
   siblingFormContainer.innerHTML = markup;
 
-  const submitFormButton = document.getElementById(
-    `button-submit-${siblingId}`
-  );
+  // const submitFormButton = document.getElementById(
+  //   `button-submit-${siblingId}`
+  // );
 
   //   submitFormButton.addEventListener("click", () => {
   //     rootPerson.addSibling();
@@ -148,5 +171,3 @@ buttonAddParent.addEventListener("click", () => {
 //             </div>`
 //     // maybe better to createElement and append child because we have event listeners
 // });
-
-console.log(people);
