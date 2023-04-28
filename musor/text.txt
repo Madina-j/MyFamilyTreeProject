@@ -1,0 +1,65 @@
+document.getElementById("form").addEventListener("click", function (event) {
+  event.preventDefault();
+});
+
+
+// submitForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   rootPerson.createChild();
+//   const name = document.getElementById("first-name").value;
+//   const lastname = document.getElementById("last-name").value;
+//   const dOB = document.getElementById("dob").value;
+//   people.push(new Person(name, lastname, dOB));
+//   console.log(people);
+// });
+
+
+
+//   const submitFormButton = document.getElementById(`button-submit-${childId}`);
+// const submitForm = document.getElementById(`theForm-${childId}`);
+// submitForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   rootPerson.createChild();
+//   const name = document.getElementById("first-name").value;
+//   const lastname = document.getElementById("last-name").value;
+//   const dOB = document.getElementById("dob").value;
+//   people.push(new Person(name, lastname, dOB));
+//   console.log(people);
+// });
+
+//   submitFormButton.addEventListener("click", () => {
+//     rootPerson.addChild();
+//     people.push(new Person(name, lastname, dOB));
+//     console.log(people);
+//   });
+
+
+// const submitFormButton = document.getElementById(
+  //   `button-submit-${siblingId}`
+  // );
+
+  //   submitFormButton.addEventListener("click", () => {
+  //     rootPerson.addSibling();
+  //     people.push(new Person(name, lastname, dOB));
+  //     console.log(people);
+  //   });
+
+
+  // // in some function
+
+// people.forEach((person) => {
+//   // put some HTML on the page
+//     let familyTree = document.getElementById('family-tree')
+//     familyTree.innerHTML = `
+//             <div class="person">
+//                 <h3>first name, lastname</h3>
+//                 <div>DOB</div>
+//             </div>`
+//     // maybe better to createElement and append child because we have event listeners
+// });
+
+ //   submitFormButton.addEventListener("click", () => {
+  //     rootPerson.addparent();
+  //     people.push(new Person(name, lastname, dOB));
+  //     console.log(people);
+  //   });

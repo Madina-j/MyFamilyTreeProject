@@ -1,7 +1,3 @@
-document.getElementById("form").addEventListener("click", function (event) {
-  event.preventDefault();
-});
-
 // window.localStorage.setItem("madina", "is the best student");
 // window.localStorage.getItem('madina')
 
@@ -73,16 +69,6 @@ personForm.addEventListener("submit", (e) => {
   console.log(people);
 });
 
-// submitForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   rootPerson.createChild();
-//   const name = document.getElementById("first-name").value;
-//   const lastname = document.getElementById("last-name").value;
-//   const dOB = document.getElementById("dob").value;
-//   people.push(new Person(name, lastname, dOB));
-//   console.log(people);
-// });
-
 /////////// Form for rest of people/////////////////////////////////////
 const generateFormTemplate = (personId, title = "Form") => `
 <div class="theForm">
@@ -98,6 +84,21 @@ const generateFormTemplate = (personId, title = "Form") => `
         <button id="button-submit-${personId}">Submit</button>
     </form>
 </div>`;
+const theForm = document.getElementById("theForm");
+theForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("formName").value;
+  const lastname = document.getElementById("formLastName").value;
+  const dOB = document.getElementById("formDob").value;
+
+  const person = new Person(name, lastname, dOB);
+
+  people.push(person);
+  rootPerson = person;
+
+  console.log(people);
+});
 ///////////////////// Child Form/////////////////////////////////////////
 buttonAddChild.addEventListener("click", () => {
   const childId = Math.random() * 1000;
@@ -105,23 +106,6 @@ buttonAddChild.addEventListener("click", () => {
 
   childFormContainer.innerHTML = markup;
 });
-//   const submitFormButton = document.getElementById(`button-submit-${childId}`);
-// const submitForm = document.getElementById(`theForm-${childId}`);
-// submitForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   rootPerson.createChild();
-//   const name = document.getElementById("first-name").value;
-//   const lastname = document.getElementById("last-name").value;
-//   const dOB = document.getElementById("dob").value;
-//   people.push(new Person(name, lastname, dOB));
-//   console.log(people);
-// });
-
-//   submitFormButton.addEventListener("click", () => {
-//     rootPerson.addChild();
-//     people.push(new Person(name, lastname, dOB));
-//     console.log(people);
-//   });
 
 ///////////////////////Sibling Form/////////////////////////////////////
 
@@ -130,16 +114,6 @@ buttonAddSibling.addEventListener("click", () => {
   const markup = generateFormTemplate(siblingId, "Sibling Form");
 
   siblingFormContainer.innerHTML = markup;
-
-  // const submitFormButton = document.getElementById(
-  //   `button-submit-${siblingId}`
-  // );
-
-  //   submitFormButton.addEventListener("click", () => {
-  //     rootPerson.addSibling();
-  //     people.push(new Person(name, lastname, dOB));
-  //     console.log(people);
-  //   });
 });
 
 ///////////////////////Parent Form////////////////////////////////////
@@ -151,23 +125,5 @@ buttonAddParent.addEventListener("click", () => {
   parentFormContainer.innerHTML = markup;
 
   const submitFormButton = document.getElementById(`button-submit-${parentId}`);
-
-  //   submitFormButton.addEventListener("click", () => {
-  //     rootPerson.addparent();
-  //     people.push(new Person(name, lastname, dOB));
-  //     console.log(people);
-  //   });
 });
 /////////////////////////////////////////////////////////////////////////////////////
-// // in some function
-
-// people.forEach((person) => {
-//   // put some HTML on the page
-//     let familyTree = document.getElementById('family-tree')
-//     familyTree.innerHTML = `
-//             <div class="person">
-//                 <h3>first name, lastname</h3>
-//                 <div>DOB</div>
-//             </div>`
-//     // maybe better to createElement and append child because we have event listeners
-// });
