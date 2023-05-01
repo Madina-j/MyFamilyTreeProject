@@ -3,6 +3,9 @@
 
 let people = []; // Array for all Persons
 let rootPerson = undefined; // the person
+let children = []; // children array
+let siblings = []; // siblings array
+let parents = []; // parents array
 //
 class Person {
   constructor(name, lastname, dOB) {
@@ -67,7 +70,63 @@ personForm.addEventListener("submit", (e) => {
   rootPerson = person;
 
   console.log(people);
+  ////////////clear CardInfo///////
+  const cardsInfo = document.getElementById("cards");
+  cardsInfo.textContent = "";
+  for (i = 0; i < people.length; i++) {
+    const ul = document.querySelector("#cards");
+
+    //Adding elements
+
+    const li = document.createElement("div");
+    li.innerHTML = generatePersonCard(people[i]);
+    ul.appendChild(li);
+  }
 });
+////////////Aside card generator for Person///////////
+const generatePersonCard = (person) => `
+    <div class="asideCard">
+      <h2>Person</h2>
+      <div>
+      <h3 >First name: ${person.name}</h3>
+      <h3 >Last name: ${person.lastname}</h3>
+      <h3 >DoB: ${person.dOB}</h3>
+      <br>
+      </div>
+    </div>`;
+/////////Aside card generator for Child/////////
+const generateChildCard = (person) => `
+    <div class="asideCard">
+      <h2>Child:</h2>
+      <div>
+      <h3 >First name: ${person.name}</h3>
+      <h3 >Last name: ${person.lastname}</h3>
+      <h3 >DoB: ${person.dOB}</h3>
+      <br>
+      </div>
+    </div>`;
+///////Aside card generator for Sibling//////
+const generateSiblingCard = (person) => `
+    <div class="asideCard">
+      <h2>Sibling:</h2>
+      <div>
+      <h3 >First name: ${person.name}</h3>
+      <h3 >Last name: ${person.lastname}</h3>
+      <h3 >DoB: ${person.dOB}</h3>
+      <br>
+      </div>
+    </div>`;
+///////Aside card generator for Parent//////
+const generateParentCard = (person) => `
+<div class="asideCard">
+  <h2>Parent:</h2>
+  <div>
+  <h3 >First name: ${person.name}</h3>
+  <h3 >Last name: ${person.lastname}</h3>
+  <h3 >DoB: ${person.dOB}</h3>
+  <br>
+  </div>
+</div>`;
 
 /////////// Form for rest of people/////////////////////////////////////
 const generateFormTemplate = (personId, title = "Form") => `
@@ -84,27 +143,55 @@ const generateFormTemplate = (personId, title = "Form") => `
         <button id="button-submit-${personId}">Submit</button>
     </form>
 </div>`;
-const theForm = document.getElementById("theForm");
-theForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+// const hideFormAfterSubmit = document.getElementById(
+//   "button-submit-${personId}"
+// );
+// hideFormAfterSubmit.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   hideFormAfterSubmit.style.display = "none";
+// });
 
-  const name = document.getElementById("formName").value;
-  const lastname = document.getElementById("formLastName").value;
-  const dOB = document.getElementById("formDob").value;
-
-  const person = new Person(name, lastname, dOB);
-
-  people.push(person);
-  rootPerson = person;
-
-  console.log(people);
-});
 ///////////////////// Child Form/////////////////////////////////////////
 buttonAddChild.addEventListener("click", () => {
   const childId = Math.random() * 1000;
   const markup = generateFormTemplate(childId, "Child Form");
 
   childFormContainer.innerHTML = markup;
+
+  const x = document.getElementById(`button-submit-${childId}`);
+  x.addEventListener("click", (e) => {
+    e.preventDefault();
+    //////////////////////////////
+    const name = document.getElementById(`input-firstname-${childId}`).value;
+    const lastname = document.getElementById(`input-lastname-${childId}`).value;
+    const dOB = document.getElementById(`input-dob-${childId}`).value;
+
+    const person = new Person(name, lastname, dOB);
+
+    children.push(person);
+    rootPerson = person;
+
+    console.log(people);
+    ////////////clear CardInfo///////
+    const cardsInfo = document.getElementById("childCards");
+    cardsInfo.textContent = "";
+    for (i = 0; i < children.length; i++) {
+      const ul = document.querySelector("#childCards");
+
+      //Adding elements
+
+      const li = document.createElement("div");
+      li.innerHTML = generateChildCard(children[i]);
+      ul.appendChild(li);
+    }
+    ////////////////////////////
+  });
+  //////////Hide Form//////
+  // const hideFormAfterSubmit = document.getElementById("childForm");
+  // hideFormAfterSubmit.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   hideFormAfterSubmit.style.display = "none";
+  // });
 });
 
 ///////////////////////Sibling Form/////////////////////////////////////
@@ -114,6 +201,50 @@ buttonAddSibling.addEventListener("click", () => {
   const markup = generateFormTemplate(siblingId, "Sibling Form");
 
   siblingFormContainer.innerHTML = markup;
+  const x = document.getElementById(`button-submit-${siblingId}`);
+  x.addEventListener("click", (e) => {
+    e.preventDefault();
+    //////////////////////////////
+    const name = document.getElementById(`input-firstname-${siblingId}`).value;
+    const lastname = document.getElementById(
+      `input-lastname-${siblingId}`
+    ).value;
+    const dOB = document.getElementById(`input-dob-${siblingId}`).value;
+
+    const person = new Person(name, lastname, dOB);
+
+    siblings.push(person);
+    rootPerson = person;
+
+    console.log(people);
+    ////////////clear CardInfo///////
+    const cardsInfo = document.getElementById("siblingCards");
+    cardsInfo.textContent = "";
+    for (i = 0; i < siblings.length; i++) {
+      const ul = document.querySelector("#siblingCards");
+
+      //Adding elements
+
+      const li = document.createElement("div");
+      li.innerHTML = generateSiblingCard(siblings[i]);
+      ul.appendChild(li);
+      // /////style////
+      // div.classList.add("styleElementInForm");
+      // document.main.appendChild(div);
+      // .styleElementInForm{
+      //   border: 1px solid black;
+      // }
+
+      // document
+      //   .querySelector("#childForm")
+      //   .addEventListener("click", function (e) {
+      //     const target = e.target;
+      //     if (target.matches("div")) {
+      //       target.style.backgroundColor = "lightgrey";
+      //     }
+      //   });
+    }
+  });
 });
 
 ///////////////////////Parent Form////////////////////////////////////
@@ -123,7 +254,34 @@ buttonAddParent.addEventListener("click", () => {
   const markup = generateFormTemplate(parentId, "Parent Form");
 
   parentFormContainer.innerHTML = markup;
+  const x = document.getElementById(`button-submit-${parentId}`);
+  x.addEventListener("click", (e) => {
+    e.preventDefault();
+    //////////////////////////////
+    const name = document.getElementById(`input-firstname-${parentId}`).value;
+    const lastname = document.getElementById(
+      `input-lastname-${parentId}`
+    ).value;
+    const dOB = document.getElementById(`input-dob-${parentId}`).value;
 
-  const submitFormButton = document.getElementById(`button-submit-${parentId}`);
+    const person = new Person(name, lastname, dOB);
+
+    parents.push(person);
+    rootPerson = person;
+
+    console.log(people);
+    ////////////clear CardInfo///////
+    const cardsInfo = document.getElementById("parentCard");
+    cardsInfo.textContent = "";
+    for (i = 0; i < parents.length; i++) {
+      const ul = document.querySelector("#parentCard");
+
+      //Adding elements
+
+      const li = document.createElement("div");
+      li.innerHTML = generateParentCard(parents[i]);
+      ul.appendChild(li);
+    }
+  });
 });
-/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
